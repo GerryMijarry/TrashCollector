@@ -8,11 +8,11 @@ You have been brought on to a team building an application for a business specia
 •	Track their current account balance
 It is your task to build out the employee-side of this application to allow employees to access relevant customer data to service their area of responsibility. 
 
-# (5 points): 
+# <s>(5 points):</s>
 As a developer, I want to make good, consistent commits. 
 # (5 points): 
 As a developer, I want to utilize Django Auth Groups for this application. 
-#(5 points): 
+# <s>(5 points):</s> 
 As a developer, I want to adhere to the naming conventions & best practices established in the starter code so that my code will seamlessly integrate to the existing project landscape.
 ## (10 points): 
 As a newly-registered User, I want to complete the registration process and create my Employee profile. 
