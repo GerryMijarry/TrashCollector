@@ -15,14 +15,16 @@
         <br />
         Your (non-suspended) Customers with a matching zip code and are needing a pickup today:
         <br />
+      <form action="">
+            {% for customers in customer_match %}
+                <li><button>{{ customers.name }} - {{ customers.address }}</li></button>
+            {% endfor %}
 
-        {% for customers in customer_match %}
+            {% for customers in one_day_match %}
+                <li>{{ customers.name }} - {{ customers.address }}</li>
+            {% endfor %}
+      </form>
 
-
-                    <li>{{ customers.name }} - {{ customers.address }} </li>
-
-
-        {% endfor %}
 
 
 {#  As a registered employee, I want my index view to be a list of today’s customers who meet ALL the following criteria:#}

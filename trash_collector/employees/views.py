@@ -26,13 +26,18 @@ def index(request):
 
         days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
         day_of_week = days[today.weekday()]
-        customer_match = Customer.objects.filter(zip_code=employee_zip_code).filter(weekly_pickup=day_of_week).filter(one_time_pickup=today)
+        customer_match = Customer.objects.filter(zip_code=employee_zip_code).filter(weekly_pickup=day_of_week).exclude(date_of_last_pickup=today)\
+            .exclude(suspend_start__gte=today)\
+            .exclude(suspend_end__lte=today)\
+            .exclude(one_time_pickup=today)
+        one_day_match = Customer.objects.filter(zip_code=employee_zip_code).filter(one_time_pickup=today)
 
         context = {
             'logged_in_employee': logged_in_employee,
             'today': today,
             'day_of_week': day_of_week,
             'customer_match': customer_match,
+            'one_day_match': one_day_match
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
