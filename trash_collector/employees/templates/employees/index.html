@@ -12,11 +12,17 @@
         <br />
 
         <br />
-        Your Customers with a matching zip code:
+        Your (non-suspended) Customers with a matching zip code and are needing a pickup today:
         <br />
 
         {% for customers in zip_code_match %}
-          {{ customers.name }}
+            {% if customers.suspend_start >= today and customers.suspend_end <= today %}
+                {% if customers.weekly_pickup == day_of_week or customers.one_time_pickup == day_of_week %}
+                    {% if customers.date_of_last_pickup != today %}
+                        <li>{{ customers.name }} - {{ customers.address }} </li>
+                        {% endif %}
+                    {% endif %}
+            {% endif %}
         {% endfor %}
 
 

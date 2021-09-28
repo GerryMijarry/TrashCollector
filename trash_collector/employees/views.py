@@ -25,9 +25,13 @@ def index(request):
 
         today = date.today()
 
+        days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+        day_of_week = days[today.weekday()]
+
         context = {
             'logged_in_employee': logged_in_employee,
             'today': today,
+            'day_of_week': day_of_week,
             'zip_code_match': zip_code_match,
         }
         return render(request, 'employees/index.html', context)
