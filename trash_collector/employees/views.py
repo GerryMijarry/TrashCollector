@@ -4,23 +4,31 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from datetime import date
-
+from django.apps import apps
 from .models import Employee
+
 
 
 @login_required
 def index(request):
     # The following line will get the logged-in user (if there is one) within any view function
+    Customer = apps.get_model('customers.Customer')
     logged_in_user = request.user
     try:
         # This line will return the customer record of the logged-in user if one exists
         logged_in_employee = Employee.objects.get(user=logged_in_user)
 
+        employee_zip_code = logged_in_employee.zip_code
+
+        zip_code_match = Customer.objects.filter(zip_code=employee_zip_code)
+
+
         today = date.today()
 
         context = {
             'logged_in_employee': logged_in_employee,
-            'today': today
+            'today': today,
+            'zip_code_match': zip_code_match,
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
