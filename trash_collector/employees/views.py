@@ -20,19 +20,19 @@ def index(request):
 
         employee_zip_code = logged_in_employee.zip_code
 
-        zip_code_match = Customer.objects.filter(zip_code=employee_zip_code)
 
 
         today = date.today()
 
         days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
         day_of_week = days[today.weekday()]
+        customer_match = Customer.objects.filter(zip_code=employee_zip_code).filter(weekly_pickup=day_of_week).filter(one_time_pickup=today)
 
         context = {
             'logged_in_employee': logged_in_employee,
             'today': today,
             'day_of_week': day_of_week,
-            'zip_code_match': zip_code_match,
+            'customer_match': customer_match,
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
