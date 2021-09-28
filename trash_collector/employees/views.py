@@ -51,12 +51,12 @@ def edit_profile(request):
         logged_in_employee.address = address_from_form
         logged_in_employee.zip_code = zip_from_form
         logged_in_employee.save()
-        return HttpResponseRedirect(reverse('employee:index'))
+        return HttpResponseRedirect(reverse('employees:index'))
     else:
         context = {
             'logged_in_employee': logged_in_employee
         }
-        return render(request, 'employee/edit_profile.html', context)
+        return render(request, 'employees/edit_profile.html', context)
 
 
 
