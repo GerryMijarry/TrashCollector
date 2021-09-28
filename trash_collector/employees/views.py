@@ -14,7 +14,7 @@ def index(request):
     logged_in_user = request.user
     try:
         # This line will return the customer record of the logged-in user if one exists
-        logged_in_customer = Employee.objects.get(user=logged_in_user)
+        logged_in_employee = Employee.objects.get(user=logged_in_user)
 
         today = date.today()
 
