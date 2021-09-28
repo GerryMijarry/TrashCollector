@@ -17,11 +17,11 @@
         <br />
       <form action="">
             {% for customers in customer_match %}
-                <li><button>{{ customers.name }} - {{ customers.address }}</li></button>
+                <br><li>{{ customers.name }} - {{ customers.address }} <button>Completed</button></li><br>
             {% endfor %}
 
             {% for customers in one_day_match %}
-                <li>{{ customers.name }} - {{ customers.address }}</li>
+                <br><li>{{ customers.name }} - {{ customers.address }} <button>Completed</button></li><br>
             {% endfor %}
       </form>
 
