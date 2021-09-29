@@ -19,8 +19,8 @@
             {% for customers in customer_match %}
                 <form action="{% url 'employees:index' %}" method="post">
                     {% csrf_token %}
-                    Name: <input type="name" name="name" id="name" value="{{ customers.name }}" disabled>
-                    Address <input type="name" name="address" id="address" value="{{ customers.address }}" disabled>
+                    Name: <input type="name" name="name" id="name" value="{{ customers.name }}">
+                    Address <input type="name" name="address" id="address" value="{{ customers.address }}">
 
                     <input type="submit" value="Pickup Complete" >
                 </form>
@@ -29,8 +29,8 @@
             {% for customers in one_day_match %}
                 <form action="{% url 'employees:index' %}" method="post">
                     {% csrf_token %}
-                    Name: <input type="hidden" name="name" id="name" value="{{ customers.name }}" disabled>
-                    Address: <input type="hidden" name="address" id="address" value="{{ customers.address }}" disabled>
+                    Name: <input type="name" name="name" id="name" value="{{ customers.name }}">
+                    Address: <input type="name" name="address" id="address" value="{{ customers.address }}">
                     <input type="submit" value="Pickup Complete">
                 </form>
             {% endfor %}
