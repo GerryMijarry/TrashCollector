@@ -19,13 +19,10 @@
             {% for customers in customer_match %}
                 <form action="{% url 'employees:index' %}" method="post">
                     {% csrf_token %}
-<<<<<<< HEAD
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}" >
                     Address <input type="address" name="address" id="address" value="{{ customers.address }}" >
-=======
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}">
                     Address <input type="address" name="address" id="address" value="{{ customers.address }}">
->>>>>>> 36b58710103ea62521b3b8cef4f2f33d8b085301
 
                     <input type="submit" value="Pickup Complete" >
                 </form>
