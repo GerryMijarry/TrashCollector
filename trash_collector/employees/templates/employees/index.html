@@ -20,7 +20,8 @@
                 <form action="{% url 'employees:index' %}" method="post">
                     {% csrf_token %}
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}" disabled>
-                    Address: <input type="address" name="address" id="address" value="{{ customers.address }}" disabled>
+                    Address: <input type="hidden" name="address" id="address" value="{{ customers.address }}" disabled>
+                    ID: <input type="id" name="id" id="id" value="{{ customers.id }}" disabled>
 
                     <input type="submit" value="Pickup Complete" >
                 </form>
@@ -31,6 +32,7 @@
                     {% csrf_token %}
                     Name: <input type="hidden" name="name" id="name" value="{{ customers.name }}" disabled>
                     Address: <input type="hidden" name="address" id="address" value="{{ customers.address }}" disabled>
+                    ID: <input type="id" name="id" id="id" value="{{ customers.id }}" disabled>
                     <input type="submit" value="Pickup Complete">
                 </form>
             {% endfor %}
