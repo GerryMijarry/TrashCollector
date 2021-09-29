@@ -14,14 +14,19 @@ def index(request):
     # The following line will get the logged-in user (if there is one) within any view function
     Customer = apps.get_model('customers.Customer')
     logged_in_user = request.user
+    if request.method == "POST":
+        today = date.today()
+        name_from_form = request.POST.get('name')
+        completed_customer = Customer.objects.get(name=name_from_form)
+        completed_customer.date_of_last_pickup = today
+
+
+        return HttpResponseRedirect(reverse('employees:index'))
+
     try:
         # This line will return the customer record of the logged-in user if one exists
         logged_in_employee = Employee.objects.get(user=logged_in_user)
-
         employee_zip_code = logged_in_employee.zip_code
-
-
-
         today = date.today()
 
         days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
@@ -74,6 +79,8 @@ def edit_profile(request):
             'logged_in_employee': logged_in_employee
         }
         return render(request, 'employees/edit_profile.html', context)
+
+
 
 
 
