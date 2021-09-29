@@ -21,10 +21,10 @@
                     {% csrf_token %}
 <<<<<<< HEAD
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}" >
-                    Address <input type="name" name="address" id="address" value="{{ customers.address }}" >
+                    Address <input type="address" name="address" id="address" value="{{ customers.address }}" >
 =======
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}">
-                    Address <input type="name" name="address" id="address" value="{{ customers.address }}">
+                    Address <input type="address" name="address" id="address" value="{{ customers.address }}">
 >>>>>>> 36b58710103ea62521b3b8cef4f2f33d8b085301
 
                     <input type="submit" value="Pickup Complete" >
@@ -35,7 +35,7 @@
                 <form action="{% url 'employees:index' %}" method="post">
                     {% csrf_token %}
                     Name: <input type="name" name="name" id="name" value="{{ customers.name }}">
-                    Address: <input type="name" name="address" id="address" value="{{ customers.address }}">
+                    Address: <input type="address" name="address" id="address" value="{{ customers.address }}">
                     <input type="submit" value="Pickup Complete">
                 </form>
             {% endfor %}

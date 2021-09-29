@@ -19,8 +19,6 @@ def index(request):
         name_from_form = request.POST.get('name')
         completed_customer = Customer.objects.get(name=name_from_form)
         completed_customer.date_of_last_pickup = today
-        completed_customer.balance += 20
-        print(Customer.balance)
         completed_customer.save()
 
         return HttpResponseRedirect(reverse('employees:index'))
@@ -33,11 +31,15 @@ def index(request):
 
         days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
         day_of_week = days[today.weekday()]
-        customer_match = Customer.objects.filter(zip_code=employee_zip_code).filter(weekly_pickup=day_of_week).exclude(date_of_last_pickup=today)\
+        customer_match = Customer.objects.filter(zip_code=employee_zip_code)\
+            .filter(weekly_pickup=day_of_week)\
+            .exclude(date_of_last_pickup=today)\
             .exclude(suspend_start__gte=today)\
             .exclude(suspend_end__lte=today)\
             .exclude(one_time_pickup=today)
-        one_day_match = Customer.objects.filter(zip_code=employee_zip_code).filter(one_time_pickup=today)
+        one_day_match = Customer.objects.filter(zip_code=employee_zip_code)\
+            .filter(one_time_pickup=today)\
+            .exclude(date_of_last_pickup=today)\
 
         context = {
             'logged_in_employee': logged_in_employee,
