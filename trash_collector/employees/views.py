@@ -19,6 +19,8 @@ def index(request):
         name_from_form = request.POST.get('name')
         completed_customer = Customer.objects.get(name=name_from_form)
         completed_customer.date_of_last_pickup = today
+        completed_customer.balance += 20
+        print(Customer.balance)
         completed_customer.save()
 
         return HttpResponseRedirect(reverse('employees:index'))
