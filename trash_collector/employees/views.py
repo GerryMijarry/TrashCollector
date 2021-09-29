@@ -16,8 +16,8 @@ def index(request):
     logged_in_user = request.user
     if request.method == "POST":
         today = date.today()
-        id_from_form = request.POST.get('id')
-        completed_customer = Customer.objects.get(id=id_from_form)
+        name_from_form = request.POST.get('name')
+        completed_customer = Customer.objects.get(name=name_from_form)
         completed_customer.date_of_last_pickup = today
         completed_customer.save()
 
