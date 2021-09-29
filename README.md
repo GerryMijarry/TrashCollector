@@ -10,23 +10,23 @@ It is your task to build out the employee-side of this application to allow empl
 
 # <s>(5 points):</s>
 As a developer, I want to make good, consistent commits. 
-# (5 points): 
+# <s>(5 points)<s/>: 
 As a developer, I want to utilize Django Auth Groups for this application. 
 # <s>(5 points):</s> 
 As a developer, I want to adhere to the naming conventions & best practices established in the starter code so that my code will seamlessly integrate to the existing project landscape.
-## (10 points): 
+# <s> (10 points)</s>: 
 As a newly-registered User, I want to complete the registration process and create my Employee profile. 
-#(5 points): 
+# <s> (5 points) </s>: 
 As a registered employee, I want to be able to edit my employee information to change my name and/or zip code.
-#(20 points): 
+# <s> (20 points) </s>: 
 As a registered employee, I want my index view to be a list of today’s customers who meet ALL the following criteria:
 -	Customers in my zip code
 -	Pickup day is today’s day of week OR One-time pickup date that falls on today
 -	Non-suspended accounts
 -	Trash has not yet been picked up today
-# (10 points): 
+# <s>(10 points) </s>: 
 As a registered employee, I want a button/link displayed with each pickup in my daily list that I can click to “confirm” a pickup.
-#(5 points): 
+# <s>(5 points) </s>: 
 As a registered employee, I want all confirmed pickups to have a charge of $20 applied to the customer.
 #(10 points): 
 As a registered employee, I want to be able to choose a day of the week to filter by, and see all customers who gets a weekly pickup on the day selected. (One time pickups do NOT need to be displayed)
