@@ -17,9 +17,9 @@ def index(request):
 
     if request.method == "POST":
         today = date.today()
-        name_from_form = request.POST.get('name')
+        id_from_form = request.POST.get('id')
 
-        completed_customer = Customer.objects.get(name=name_from_form)
+        completed_customer = Customer.objects.get(id=id_from_form)
         completed_customer.date_of_last_pickup = today
 
         completed_customer.balance += 20

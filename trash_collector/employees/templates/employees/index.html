@@ -27,6 +27,7 @@
 
                     <form action="{% url 'employees:index' %}" method="post">
                         {% csrf_token %}
+                            ID: <input type="id" name="id" id="id" style='width:5%' value="{{ customer.id }}" readonly>
                             Name: <input type="name" name="name" id="name" value="{{ customer.name }}" readonly>
                             Address: <input type="address" name="address" id="address" value="{{ customer.address }}" readonly>
                             <input type="submit" value="Job Complete" >
@@ -38,10 +39,10 @@
 
                     <form action="{% url 'employees:index' %}" method="post">
                         {% csrf_token %}
+                            ID: <input type="id" name="id" id="id" style='width:5%' value="{{ customer.id }}" readonly>
                             Name: <input type="name" name="name" id="name" value="{{ customer.name }}" readonly>
                             Address: <input type="address" name="address" id="address" value="{{ customer.address }}" readonly>
                             <input type="submit" value="Job Complete" >
-                        <input type="submit" value="Update" >
                     </form>
                 {% endfor %}
 
