@@ -14,9 +14,6 @@
 {% block content %}
   {% if user.is_authenticated %}
         Hello {{ logged_in_employee.name }}!<br />
-            </div>
-            <div class="d-flex justify-content-end ">
-
         Address: {{ logged_in_employee.address }} <br>
         ZipCode: {{logged_in_employee.zip_code }}<br />
             </div>
