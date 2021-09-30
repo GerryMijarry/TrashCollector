@@ -1,30 +1,34 @@
 {% extends 'employees/employee_base.html' %}
-
+<head>
+  <title>garbage pickup </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 {% block title %} Employee Home {% endblock %}
 
 {% block header %} Employee Portal {% endblock %}
-
+  <div class="container-fluid ">
+        <div>
 {% block content %}
   {% if user.is_authenticated %}
         Hello {{ logged_in_employee.name }}!<br />
+            </div>
+            <div class="d-flex justify-content-end ">
+
         Address: {{ logged_in_employee.address }} <br>
         ZipCode: {{logged_in_employee.zip_code }}<br />
+            </div>
 
         <br />
-
-
-
         <br />
+                <div class='d-flex justify-content-center '>
+
         Your (non-suspended) Customers with a matching zip code and are needing a pickup today:
         <br />
         <br />
-
-
-
-
-
                 {% for customer in customer_match %}
-
                     <form action="{% url 'employees:index' %}" method="post">
                         {% csrf_token %}
                             ID: <input type="id" name="id" id="id" style='width:5%' value="{{ customer.id }}" readonly>
@@ -32,11 +36,8 @@
                             Address: <input type="address" name="address" id="address" value="{{ customer.address }}" readonly>
                             <input type="submit" value="Job Complete" >
                     </form>
-
                 {% endfor %}
-
                 {% for customer in one_day_match %}
-
                     <form action="{% url 'employees:index' %}" method="post">
                         {% csrf_token %}
                             ID: <input type="id" name="id" id="id" style='width:5%' value="{{ customer.id }}" readonly>
@@ -44,6 +45,8 @@
                             Address: <input type="address" name="address" id="address" value="{{ customer.address }}" readonly>
                             <input type="submit" value="Job Complete" >
                     </form>
+                                </div>
+
                 {% endfor %}
 
 
