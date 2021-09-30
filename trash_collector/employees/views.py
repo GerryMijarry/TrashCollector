@@ -14,19 +14,16 @@ def index(request):
     # The following line will get the logged-in user (if there is one) within any view function
     Customer = apps.get_model('customers.Customer')
     logged_in_user = request.user
-    weekday_from_form = ""
 
     if request.method == "POST":
         today = date.today()
-        weekday_from_form = request.POST.get('days')
         name_from_form = request.POST.get('name')
 
-        if name_from_form is not None:
-            completed_customer = Customer.objects.get(name=name_from_form)
-            completed_customer.date_of_last_pickup = today
+        completed_customer = Customer.objects.get(name=name_from_form)
+        completed_customer.date_of_last_pickup = today
 
-            completed_customer.balance += 20
-            completed_customer.save()
+        completed_customer.balance += 20
+        completed_customer.save()
 
         return HttpResponseRedirect(reverse('employees:index'))
 
@@ -39,17 +36,6 @@ def index(request):
         days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
         day_of_week = days[today.weekday()]
 
-        if len(weekday_from_form) == 0:
-            weekday_from_form = day_of_week
-
-
-
-
-        weekday_match = Customer.objects.filter(zip_code=employee_zip_code)\
-            .filter(weekly_pickup=weekday_from_form)\
-            .exclude(suspend_start__gte=today) \
-            .exclude(suspend_end__lte=today) \
-
         customer_match = Customer.objects.filter(zip_code=employee_zip_code)\
             .filter(weekly_pickup=day_of_week)\
             .exclude(date_of_last_pickup=today)\
@@ -61,7 +47,6 @@ def index(request):
             .exclude(date_of_last_pickup=today)\
 
         context = {
-            'weekday_match': weekday_match,
             'logged_in_employee': logged_in_employee,
             'today': today,
             'day_of_week': day_of_week,
@@ -105,8 +90,45 @@ def edit_profile(request):
         return render(request, 'employees/edit_profile.html', context)
 
 
+def weekday_pickup_search(request):
+    Customer = apps.get_model('customers.Customer')
+    logged_in_user = request.user
 
+    logged_in_employee = Employee.objects.get(user=logged_in_user)
+    employee_zip_code = logged_in_employee.zip_code
 
+    if request.method == "POST":
+        weekday_from_form = request.POST.get('days')
+
+        customer_match = Customer.objects.filter(zip_code=employee_zip_code)\
+            .filter(weekly_pickup=weekday_from_form)\
+
+        selected_day = weekday_from_form
+
+        context = {
+            'customer_match': customer_match,
+            'logged_in_employee': logged_in_employee,
+            'selected_day': selected_day,
+        }
+
+        return render(request, 'employees/weekday_pickup_search.html', context)
+    else:
+        today = date.today()
+
+        days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+        today_weekday = days[today.weekday()]
+
+        customer_match = Customer.objects.filter(zip_code=employee_zip_code) \
+            .filter(weekly_pickup=today_weekday)\
+
+        selected_day = today_weekday
+
+        context = {
+            'customer_match': customer_match,
+            'logged_in_employee': logged_in_employee,
+            'selected_day': selected_day
+        }
+        return render(request, 'employees/weekday_pickup_search.html', context)
 
 
 

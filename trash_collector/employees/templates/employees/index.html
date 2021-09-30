@@ -14,54 +14,6 @@
 
 
 
-
-
-
-
-        <br />
-        To view the weekly schedule of your customers, choose your day below:
-
-        <br />
-
-        <br />
-
-        <form action="{% url 'employees:index' %}" method="post">
-            {% csrf_token %}
-
-
-            <label for="cars">Day of the week:</label>
-
-                <select name="days" id="days">
-                <option value="monday">Monday</option>
-                <option value="tuesday">Tuesday</option>
-                <option value="wednesday">Wednesday</option>
-                <option value="thursday">Thursday</option>
-                <option value="thursday">Friday</option>
-                <option value="thursday">Saturday</option>
-                <option value="thursday">Sunday</option>
-            </select>
-            <input type="submit" value="Update" >
-        </form>
-        <br />
-        <br />
-        {% for customer in weekday_match %}
-
-            Name: <input type="name" name="name" id="name" value="{{ customer.name }}" readonly>
-            Pickup Day: <input type="weekly_pickup" name="weekly_pickup" id="weekly_pickup" value="{{ customer.weekly_pickup }}" readonly>
-
-
-
-        {% endfor %}
-        <br />
-        <br />
-
-
-
-
-
-
-
-
         <br />
         Your (non-suspended) Customers with a matching zip code and are needing a pickup today:
         <br />

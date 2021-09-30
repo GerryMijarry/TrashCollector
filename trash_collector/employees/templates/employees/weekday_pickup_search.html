@@ -1,0 +1,76 @@
+{% extends 'employees/employee_base.html' %}
+
+{% block title %} Employee Home {% endblock %}
+
+{% block header %} Weekday Pickup Search {% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+
+
+
+        <br />
+
+
+
+
+
+
+
+        <br />
+        To view the weekly schedule of your customers, choose your day below:
+
+        <br />
+
+        <br />
+
+        <form action="{% url 'employees:weekday_pickup_search' %}" method="post">
+            {% csrf_token %}
+
+            <label for="cars">Day of the week:</label>
+
+                <select name="days" id="days">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+            </select>
+            <input type="submit" value="Search" >
+        </form>
+        <br />
+        <br />
+
+      Below are the pickups in Zip Code: {{logged_in_employee.zip_code }} for {{ selected_day }}<br />
+      {% for customer in customer_match %}
+          <br />
+          Name: <input type="name" name="name" id="name" value="{{ customer.name }}" readonly>
+          Address: <input type="address" name="address" id="address" value="{{ customer.address }}" readonly>
+          Pickup Day: <input type="radio" id="complete" name="complete" value="{{ customer.weekly_pickup }}" readonly>
+          <br />
+      {% endfor %}
+
+
+
+
+
+
+
+
+
+
+{#  As a registered employee, I want my index view to be a list of today’s customers who meet ALL the following criteria:#}
+{#-	Customers in my zip code#}
+{#-	Pickup day is today’s day of week OR One-time pickup date that falls on today#}
+{#-	Non-suspended accounts#}
+{#-	Trash has not yet been picked up today    #}
+
+
+  {% else %}
+    <p>You are at the employee index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
+  {% endif %}
+{% endblock %}
