@@ -119,7 +119,7 @@ def weekday_pickup_search(request):
         today_weekday = days[today.weekday()]
 
         customer_match = Customer.objects.filter(zip_code=employee_zip_code)\
-            .filter(weekly_pickup=today_weekday)\
+            .filter(weekly_pickup=today_weekday)
 
         selected_day = today_weekday
 
